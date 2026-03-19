@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: skillnest-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=skillnest
+
+  frontend:
+    build: ./frontend
+    container_name: skillnest-frontend
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15
+    container_name: skillnest-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: skillnest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
