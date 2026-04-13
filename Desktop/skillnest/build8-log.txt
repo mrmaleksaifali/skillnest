@@ -1,0 +1,128 @@
+2026-04-13T10:41:33.903Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2026-04-13T10:41:34.134Z [INFO]: # Retrieving Git provider SSH public keys
+2026-04-13T10:41:41.236Z [INFO]: # Successfully retrieved Git provider SSH public keys
+2026-04-13T10:41:41.320Z [INFO]: # Cloning repository: git@github.com:MalekSaifali/skillnest.git
+2026-04-13T10:41:46.015Z [INFO]: Agent pid 458
+2026-04-13T10:41:46.112Z [INFO]: Identity added: /root/.ssh/git_rsa (/root/.ssh/git_rsa)
+                                 Cloning into 'skillnest'...
+2026-04-13T10:41:46.112Z [INFO]: # Checking for Git submodules at: /codebuild/output/src1191481228/src/skillnest/.gitmodules
+2026-04-13T10:41:46.130Z [INFO]: # Retrieving environment cache...
+2026-04-13T10:41:46.183Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2026-04-13T10:41:46.183Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-04-13T10:41:46.183Z [INFO]: SSM params {"Path":"/amplify/d1ira3ohvpkrgw/main/","WithDecryption":true}
+2026-04-13T10:41:46.219Z [WARNING]: !Failed to set up process.env.secrets
+2026-04-13T10:41:47.041Z [INFO]: # No package override configuration found.
+2026-04-13T10:41:47.044Z [INFO]: # Retrieving cache...
+2026-04-13T10:41:53.846Z [INFO]: # Extracting cache...
+2026-04-13T10:42:05.991Z [INFO]: # Extraction completed
+2026-04-13T10:42:06.143Z [INFO]: # Retrieved cache
+2026-04-13T10:42:10.530Z [INFO]: ## Starting Backend Build
+                                 ## Checking for associated backend environment...
+                                 ## No backend environment association found, continuing...
+                                 ## Completed Backend Build
+2026-04-13T10:42:10.535Z [INFO]: {"backendDuration": 0}
+                                 ## Starting Frontend Build
+                                 # Starting phase: preBuild
+                                 # Executing command: cd Desktop/skillnest/client
+2026-04-13T10:42:10.581Z [INFO]: # Executing command: npm install
+2026-04-13T10:42:27.421Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-04-13T10:42:27.426Z [WARNING]: npm warn While resolving: @xstate/react@3.2.2
+                                    npm warn Found: react@19.2.4
+                                    npm warn node_modules/react
+                                    npm warn   react@"19.2.4" from the root project
+                                    npm warn   40 more (@aws-amplify/ui-react, @aws-amplify/ui-react-core, ...)
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn node_modules/@aws-amplify/ui-react-core/node_modules/@xstate/react
+                                    npm warn   @xstate/react@"^3.2.2" from @aws-amplify/ui-react-core@3.6.2
+                                    npm warn   node_modules/@aws-amplify/ui-react-core
+                                    npm warn
+                                    npm warn Conflicting peer dependency: react@18.3.1
+                                    npm warn node_modules/react
+                                    npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn   node_modules/@aws-amplify/ui-react-core/node_modules/@xstate/react
+                                    npm warn     @xstate/react@"^3.2.2" from @aws-amplify/ui-react-core@3.6.2
+                                    npm warn     node_modules/@aws-amplify/ui-react-core
+2026-04-13T10:42:27.438Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+                                    npm warn While resolving: @xstate/react@3.2.2
+                                    npm warn Found: react@19.2.4
+                                    npm warn node_modules/react
+                                    npm warn   react@"19.2.4" from the root project
+                                    npm warn   40 more (@aws-amplify/ui-react, @aws-amplify/ui-react-core, ...)
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn node_modules/@aws-amplify/ui-react/node_modules/@xstate/react
+                                    npm warn   @xstate/react@"^3.2.2" from @aws-amplify/ui-react@6.15.2
+                                    npm warn   node_modules/@aws-amplify/ui-react
+                                    npm warn
+                                    npm warn Conflicting peer dependency: react@18.3.1
+                                    npm warn node_modules/react
+                                    npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn   node_modules/@aws-amplify/ui-react/node_modules/@xstate/react
+                                    npm warn     @xstate/react@"^3.2.2" from @aws-amplify/ui-react@6.15.2
+                                    npm warn     node_modules/@aws-amplify/ui-react
+2026-04-13T10:42:35.416Z [INFO]: up to date, audited 638 packages in 20s
+2026-04-13T10:42:35.422Z [INFO]: 160 packages are looking for funding
+                                 run `npm fund` for details
+2026-04-13T10:42:35.565Z [INFO]: 7 vulnerabilities (1 moderate, 5 high, 1 critical)
+                                 To address issues that do not require attention, run:
+                                 npm audit fix
+                                 To address all issues, run:
+                                 npm audit fix --force
+                                 Run `npm audit` for details.
+2026-04-13T10:42:35.583Z [INFO]: # Completed phase: preBuild
+                                 # Starting phase: build
+2026-04-13T10:42:35.583Z [INFO]: # Executing command: npm run build
+2026-04-13T10:42:35.682Z [INFO]: > client@0.1.0 build
+                                 > next build
+2026-04-13T10:42:36.264Z [WARNING]: ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+                                    We detected multiple lockfiles and selected the directory of /codebuild/output/src1191481228/src/skillnest/Desktop/skillnest/package-lock.json as the root directory.
+                                    To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+                                    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+                                    Detected additional lockfiles:
+                                    * /codebuild/output/src1191481228/src/skillnest/Desktop/skillnest/client/package-lock.json
+2026-04-13T10:42:36.264Z [INFO]: ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-04-13T10:42:36.270Z [INFO]: Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-04-13T10:42:36.270Z [INFO]: This information is used to shape Next.js' roadmap and prioritize features.
+                                 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+                                 https://nextjs.org/telemetry
+2026-04-13T10:42:36.283Z [INFO]: ▲ Next.js 16.2.1 (Turbopack)
+2026-04-13T10:42:36.283Z [INFO]: 
+2026-04-13T10:42:36.367Z [INFO]: Creating an optimized production build ...
+2026-04-13T10:42:42.783Z [INFO]: ✓ Compiled successfully in 6.2s
+2026-04-13T10:42:42.793Z [INFO]: Running TypeScript ...
+2026-04-13T10:42:46.878Z [INFO]: Finished TypeScript in 4.1s ...
+2026-04-13T10:42:46.884Z [INFO]: Collecting page data using 3 workers ...
+2026-04-13T10:42:47.323Z [INFO]: Generating static pages using 3 workers (0/11) ...
+2026-04-13T10:42:47.593Z [INFO]: Generating static pages using 3 workers (2/11)
+2026-04-13T10:42:47.594Z [INFO]: Generating static pages using 3 workers (5/11)
+                                 Generating static pages using 3 workers (8/11)
+2026-04-13T10:42:47.643Z [INFO]: ✓ Generating static pages using 3 workers (11/11) in 320ms
+2026-04-13T10:42:47.650Z [INFO]: Finalizing page optimization ...
+2026-04-13T10:42:47.779Z [INFO]: 
+2026-04-13T10:42:47.781Z [INFO]: Route (app)
+                                 ┌ ○ /
+                                 ├ ○ /_not-found
+                                 ├ ○ /chat
+                                 ├ ○ /dashboard
+                                 ├ ○ /feed
+                                 ├ ○ /login
+                                 ├ ○ /profile
+                                 ├ ○ /signup
+                                 └ ○ /users
+2026-04-13T10:42:47.782Z [INFO]: ○  (Static)  prerendered as static content
+2026-04-13T10:42:47.938Z [INFO]: # Completed phase: build
+                                 ## Completed Frontend Build
+2026-04-13T10:42:47.951Z [INFO]: ## Build completed successfully
+2026-04-13T10:42:47.951Z [INFO]: # Starting caching...
+2026-04-13T10:42:47.960Z [INFO]: # Creating cache artifact...
+2026-04-13T10:42:56.528Z [INFO]: # Created cache artifact
+2026-04-13T10:42:56.612Z [INFO]: # Uploading cache artifact...
+2026-04-13T10:43:02.923Z [INFO]: # Uploaded cache artifact
+2026-04-13T10:43:02.992Z [INFO]: # Caching completed
+2026-04-13T10:43:02.998Z [ERROR]: !!! CustomerError: Failed to find the deploy-manifest.json file in the build output. Please verify that it exists within the "baseDirectory" specified in your buildSpec. If it's not there, we will also check the .amplify-hosting directory as a fallback. When using a framework adapter for hosting on Amplify, double-check that the adapter settings are correct.
+2026-04-13T10:43:02.999Z [INFO]: # Starting environment caching...
+2026-04-13T10:43:03.000Z [INFO]: # Environment caching completed
+

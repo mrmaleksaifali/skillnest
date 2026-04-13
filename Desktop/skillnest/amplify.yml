@@ -9,7 +9,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: Desktop/skillnest/client/.next
+    baseDirectory: Desktop/skillnest/client/out
     files:
       - '**/*'
   cache:
