@@ -1,11 +1,18 @@
 'use client';
 
-import { Amplify } from '@aws-amplify/core';
-import awsConfig from '../amplify-config';
+import { Amplify } from 'aws-amplify';
 import Navbar from './components/Navbar';
 import { usePathname } from 'next/navigation';
 
-Amplify.configure(awsConfig as any);
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      userPoolId: 'ap-south-1_TCheqKNUA',
+      userPoolClientId: '797pd77i4irdf3oavq17glgvr0',
+      loginWith: { email: true },
+    }
+  }
+});
 
 const authPages = ['/login', '/signup'];
 
