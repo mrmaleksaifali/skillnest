@@ -41,6 +41,9 @@ export default function ProfilePage() {
     linkedin_url: '',
     avatar_url: '',
     resume_url: '',
+    location: '',
+    domain: '',
+    experience: '',
   });
 
   const [skills, setSkills] = useState<string[]>([]);
@@ -67,6 +70,9 @@ export default function ProfilePage() {
         linkedin_url: data.linkedin_url || '',
         avatar_url: data.avatar_url || '',
         resume_url: data.resume_url || '',
+        location: data.location || '',
+        domain: data.domain || '',
+        experience: data.experience_level || '',
       });
       setSkills(data.skills || []);
       setSkillLevels(data.skill_levels || {});
@@ -154,6 +160,9 @@ export default function ProfilePage() {
         skills,
         skill_levels: skillLevels,
         experience_entries: experience,
+        experience: form.experience,
+        location: form.location,
+        domain: form.domain,
         projects,
       }, { headers: { Authorization: `Bearer ${token}` } });
       setMessage('✅ Profile updated successfully!');
@@ -279,6 +288,26 @@ export default function ProfilePage() {
               <div style={{ marginBottom: '16px' }}>
                 <label style={labelStyle}>Bio</label>
                 <textarea value={form.bio} onChange={e => setForm(f => ({ ...f, bio: e.target.value }))} style={{ ...inputStyle, height: '100px', resize: 'vertical' as const }} placeholder="Tell people about yourself..." />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+                <div>
+                  <label style={labelStyle}>Location</label>
+                  <input value={form.location} onChange={e => setForm(f => ({ ...f, location: e.target.value }))} style={inputStyle} placeholder="Mumbai, India" />
+                </div>
+                <div>
+                  <label style={labelStyle}>Domain</label>
+                  <select value={form.domain} onChange={e => setForm(f => ({ ...f, domain: e.target.value }))} style={{ ...inputStyle, cursor: 'pointer' }}>
+                    <option value="">Select Domain</option>
+                    {['Web Dev', 'Data Science', 'DevOps', 'Mobile', 'Design', 'AI/ML', 'Cybersecurity'].map(d => <option key={d} value={d}>{d}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <label style={labelStyle}>Experience Level</label>
+                <select value={form.experience} onChange={e => setForm(f => ({ ...f, experience: e.target.value }))} style={{ ...inputStyle, cursor: 'pointer' }}>
+                  <option value="">Select Level</option>
+                  {['Beginner', 'Intermediate', 'Expert'].map(l => <option key={l} value={l}>{l}</option>)}
+                </select>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <label style={labelStyle}>Public Profile</label>
