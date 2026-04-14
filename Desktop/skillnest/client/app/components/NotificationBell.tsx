@@ -2,7 +2,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { getAuthToken } from '../lib/auth';
 import axios from 'axios';
-import { io, Socket } from 'socket.io-client';
 import { useRouter } from 'next/navigation';
 
 interface Notification {
@@ -21,7 +20,6 @@ export default function NotificationBell({ userId }: { userId: string }) {
   const [unreadCount, setUnreadCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const socketRef = useRef<Socket | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const getToken = async () => {
@@ -92,29 +90,12 @@ export default function NotificationBell({ userId }: { userId: string }) {
     }
   };
 
-  // Connect to socket for real-time notifications
+  // Poll for notifications every 30 seconds instead of socket
   useEffect(() => {
     if (!userId) return;
-
-    const socket = io('http://15.206.124.18:4004');
-    socketRef.current = socket;
-
-    socket.on('connect', () => {
-      socket.emit('user_online', userId);
-    });
-
-    socket.on('new_notification', (notif: Notification) => {
-      setNotifications(prev => [notif, ...prev]);
-      setUnreadCount(prev => prev + 1);
-      // Flash the bell
-      const bell = document.getElementById('notif-bell');
-      if (bell) {
-        bell.style.animation = 'none';
-        setTimeout(() => { bell.style.animation = 'bellRing 0.5s ease'; }, 10);
-      }
-    });
-
-    return () => { socket.disconnect(); };
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(interval);
   }, [userId]);
 
   // Click outside to close
