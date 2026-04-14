@@ -25,9 +25,10 @@ export async function getAuthToken(): Promise<string> {
   // Fallback: scan localStorage for Cognito token
   if (typeof window !== 'undefined') {
     const clientId = '797pd77i4irdf3oavq17glgvr0';
+    // Key format: CognitoIdentityServiceProvider.{clientId}.{email}.idToken
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i) || '';
-      if (key.includes(clientId) && key.includes('idToken')) {
+      if (key.startsWith(`CognitoIdentityServiceProvider.${clientId}`) && key.endsWith('.idToken')) {
         const val = localStorage.getItem(key);
         if (val) return val;
       }
