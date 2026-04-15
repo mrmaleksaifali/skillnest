@@ -235,10 +235,7 @@ export default function ChatPage() {
       const token = await getToken();
       const headers = { Authorization: `Bearer ${token}` };
       if (isFollowing) {
-        await axios.delete('https://d2wd5c91egufsr.cloudfront.net/api/follow/unfollow', {
-          headers,
-          data: { following_id: profileData.cognito_sub }
-        });
+        await axios.post('https://d2wd5c91egufsr.cloudfront.net/api/follow/unfollow', { following_id: profileData.cognito_sub }, { headers });
         setIsFollowing(false);
         setFollowCounts(prev => ({ ...prev, followers: Math.max(0, prev.followers - 1) }));
       } else {

@@ -220,9 +220,8 @@ export default function UsersPage() {
     setFollowLoading(p => ({ ...p, [uid]: true }));
     try {
       if (user.isFollowing) {
-        await axios.delete(`${API}/follow/unfollow`, {
+        await axios.post(`${API}/follow/unfollow`, { following_id: uid }, {
           headers: { Authorization: `Bearer ${token}` },
-          data: { following_id: uid },
         });
         const upd = (list: User[]) => list.map(u => u.cognito_sub === uid ? { ...u, isFollowing: false } : u);
         setUsers(upd); setAllUsers(upd);
