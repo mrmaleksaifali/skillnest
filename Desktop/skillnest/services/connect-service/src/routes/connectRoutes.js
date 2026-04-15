@@ -13,13 +13,18 @@ router.post('/send', async (req, res) => {
       return res.status(400).json({ error: 'sender_id and receiver_id required' });
     }
 
-    // Check if already exists
+    // Check if already exists (only block if pending or accepted, not rejected)
     const existing = await pool.query(
-      'SELECT id FROM connections WHERE (sender_id=$1 AND receiver_id=$2) OR (sender_id=$2 AND receiver_id=$1)',
+      "SELECT id, status FROM connections WHERE (sender_id=$1 AND receiver_id=$2) OR (sender_id=$2 AND receiver_id=$1)",
       [sender_id, receiver_id]
     );
     if (existing.rows.length > 0) {
-      return res.json({ message: 'Request already exists' });
+      const status = existing.rows[0].status;
+      if (status === 'pending' || status === 'accepted') {
+        return res.json({ message: 'Request already exists' });
+      }
+      // If rejected, delete old record and allow new request
+      await pool.query('DELETE FROM connections WHERE id=$1', [existing.rows[0].id]);
     }
 
     await pool.query(
@@ -43,24 +48,18 @@ router.post('/request', async (req, res) => {
       return res.status(400).json({ error: 'sender_id and receiver_id required' });
     }
 
-    const existing = await pool.query(
-      'SELECT id FROM connections WHERE (sender_id=$1 AND receiver_id=$2) OR (sender_id=$2 AND receiver_id=$1)',
+    // Check if already exists (only block if pending or accepted, not rejected)
+    const existing2 = await pool.query(
+      "SELECT id, status FROM connections WHERE (sender_id=$1 AND receiver_id=$2) OR (sender_id=$2 AND receiver_id=$1)",
       [sender_id, receiver_id]
     );
-    if (existing.rows.length > 0) {
-      return res.json({ message: 'Request already exists' });
+    if (existing2.rows.length > 0) {
+      const status = existing2.rows[0].status;
+      if (status === 'pending' || status === 'accepted') {
+        return res.json({ message: 'Request already exists' });
+      }
+      await pool.query('DELETE FROM connections WHERE id=$1', [existing2.rows[0].id]);
     }
-
-    await pool.query(
-      'INSERT INTO connections (sender_id, receiver_id, status) VALUES ($1, $2, $3)',
-      [sender_id, receiver_id, 'pending']
-    );
-    res.json({ message: 'Request sent' });
-  } catch (err) {
-    console.error('Request error:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
 // ✅ ACCEPT REQUEST
 router.put('/accept', async (req, res) => {

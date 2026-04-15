@@ -26,7 +26,25 @@ router.post('/follow', async (req, res) => {
 router.delete('/unfollow', async (req, res) => {
   try {
     const follower_id = req.headers['x-user-sub'];
-    const { following_id } = req.body;
+    const following_id = req.body?.following_id;
+
+    await pool.query(
+      'DELETE FROM follows WHERE follower_id=$1 AND following_id=$2',
+      [follower_id, following_id]
+    );
+
+    res.json({ message: 'Unfollowed' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Unfollow failed' });
+  }
+});
+
+// ✅ UNFOLLOW USER (POST alias for clients that don't support DELETE with body)
+router.post('/unfollow', async (req, res) => {
+  try {
+    const follower_id = req.headers['x-user-sub'];
+    const following_id = req.body?.following_id;
 
     await pool.query(
       'DELETE FROM follows WHERE follower_id=$1 AND following_id=$2',
